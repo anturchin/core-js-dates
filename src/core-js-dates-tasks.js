@@ -66,8 +66,12 @@ function getDayName(dateString) {
  * Date('2024-02-13T00:00:00Z') => Date('2024-02-16T00:00:00Z')
  * Date('2024-02-16T00:00:00Z') => Date('2024-02-23T00:00:00Z')
  */
-function getNextFriday(/* date */) {
-  throw new Error('Not implemented');
+function getNextFriday(date) {
+  const currentDay = date.getDay();
+  const daysUntilFriday = currentDay === 5 ? 7 : (5 - currentDay + 7) % 7;
+  const nextFriday = new Date(date);
+  nextFriday.setDate(date.getDate() + daysUntilFriday);
+  return nextFriday;
 }
 
 /**
@@ -81,8 +85,9 @@ function getNextFriday(/* date */) {
  * 1, 2024 => 31
  * 2, 2024 => 29
  */
-function getCountDaysInMonth(/* month, year */) {
-  throw new Error('Not implemented');
+function getCountDaysInMonth(month, year) {
+  const lastDayOfMonth = new Date(year, month, 0).getDate();
+  return lastDayOfMonth;
 }
 
 /**
